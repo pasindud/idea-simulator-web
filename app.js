@@ -35,12 +35,12 @@ io.sockets.on('connection', function (socket) {
 
 
   socket.on('tabs', function (data) {
-    //sk.broadcast.emit('tabs',data);
+    sk.broadcast.emit('tabs',data);
     sk.emit('tabs', data); 
   });
 
   socket.on('logs', function (data) {
-    //sk.broadcast.emit('logs',data);
+    sk.broadcast.emit('logs',data);
     sk.emit('logs', data); 
   });
 
@@ -83,10 +83,10 @@ app.post('/sender', function(req,res){
 app.post('/sms', function(req,res){
   res.send({statusCode:'S1000',statusDetail:"Success"},200);
   if (req.body.destinationAddresses[0]='tel:all') {
-    //sk.broadcast.emit('broadcast', req.body);
+    sk.broadcast.emit('broadcast', req.body);
     sk.emit('broadcast', req.body);
   } else {
-    //sk.broadcast.emit('incomming', req.body);
+    sk.broadcast.emit('incomming', req.body);
     sk.emit('incomming', req.body); 
   }
 });
