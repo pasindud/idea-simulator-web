@@ -1,7 +1,10 @@
-
-/**
- * Module dependencies.
- */
+// ==========================================
+// Ideamart Group Simulator
+// ==========================================
+// Author   : Pasindu De Silva
+// License  : MIT (c) Pasindu De Silva
+// Github   : http://github.com/pasindud
+// ==========================================
 
 var express = require('express'),
     app = module.exports = express.createServer();

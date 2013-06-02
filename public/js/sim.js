@@ -1,3 +1,11 @@
+// ==========================================
+// Ideamart Group Simulator
+// ==========================================
+// Author   : Pasindu De Silva
+// License  : MIT (c) Pasindu De Silva
+// Github   : http://github.com/pasindud
+// ==========================================
+
 var numbers = [];
 var date =new Date();
    	date=date.toUTCString();
