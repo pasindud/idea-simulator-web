@@ -1,0 +1,26 @@
+#config.modal.hide.fade(tabindex='-1', role='dialog', aria-labelledby='', aria-hidden='true')
+    .modal-header
+        h3#myModalLabel Configure the Simulator
+      .modal-body
+        .alert.alert-error(id='appalt')
+          button.close(type='button',id='closes', data-dismiss='fade') ×
+          h4 Warning !
+          p#alt-app
+
+       form.form-horizontal
+       .control-group
+        label.control-label App id
+        .controls
+          input#inputappid(type='text', placeholder='App id',value='APP_000001')
+       .control-group
+        label.control-label App Password
+        .controls
+          input#inputapppassword(type='text', placeholder='App Password',value='Password')
+       .control-group
+        label.control-label App URL
+        .controls
+          input#inputappurl(type='text', placeholder='App URL',value='http://localhost/dialog/listener.php')
+      .modal-footer
+        button.btn(data-dismiss='modal', aria-hidden='true') Close
+        a.btn.btn-primary(href='#' , id='saveapp') Save changes
+

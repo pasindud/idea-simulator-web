@@ -1,0 +1,41 @@
+include header
+div.container
+   .page-header
+           h1 Ideamart Simulator
+   #msgalt
+   div(style="border:1px solid #ccc; padding :10px;")
+    input(type="text", id='newnumber',placeholder="Type the phone number") 
+    br
+    button( onclick='addnumber()' ,class="btn") Create a New Phone
+   hr
+
+
+ 
+   div(style="border:1px solid #ccc; padding :10px;")
+     ul#myTab.nav.nav-tabs
+      li.active
+        a(data-toggle="tab" ,href="#simlogtab") Simulator Log
+     #myTabContent.tab-content
+      div#simlogtab(class='tab-pane fade in active')
+            table.table.table-bordered#simlog
+              thead
+                tr
+                  td Time
+                  td Message 
+                  td To / From
+                  td Type
+              tbody
+                tr
+                  td .
+                  td .
+                  td .
+                  td .
+
+include about
+include configapp
+
+
+
+script
+
+
