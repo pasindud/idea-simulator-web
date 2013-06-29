@@ -8,11 +8,9 @@
 
 var numbers = [];
 var date =new Date();
-   	date=date.toUTCString();
+var date=date.toUTCString();
 var reqid=0;
-
-
- var socket = io.connect('http://secret-spire-2357.herokuapp.com');
+var socket = io.connect('localhost');
  
  socket.on('incomming', function (data) {
    incnmsg(data);
@@ -37,9 +35,7 @@ var reqid=0;
 // Add Tabs Dynamically
 function tabAdd(sel, id, label, content, show){
     var tabs = $(sel);
-
 	numbers.push(id);
-
     $('div.active', tabs).removeClass('in').add($('li.active', tabs)).removeClass('active');
     $('#myTabContent').append('<div class="tab-pane in active" id="'+id+'">'+content+'</div>');
     $('#myTab').append('<li><a href="#'+id+'" data-toggle="tab">'+label+'</a></li>');
@@ -49,7 +45,11 @@ function tabAdd(sel, id, label, content, show){
 // Add a new tab to tab
 function addnumber (id) {
 	var phnum=document.getElementById("newnumber").value;
-	if (phnum=='') {erromsg ('Number should not be empty'); return false;};
+	if (phnum=='') {alerts ("msgalt",'Number should not be empty','error'); return false;};
+
+	phnum = phnum.replace(/(^\s+|\s+$)/g,' ');
+
+	
 	var date =new Date();
 	date=date.toUTCString();
 	var inner="<div id='"+phnum+"' class='tab-pane fade in active'>";
@@ -60,12 +60,10 @@ function addnumber (id) {
 	
 	for (var i = 0; i < numbers.length; i++) {
 		if (numbers[i]==phnum) {
-			console.log(numbers[i],phnum8);
-			erromsg ('Number is already added');
+			alerts ("msgalt",'Number is already added','error');
 			return false;
 		}
 	}
-
 	socket.emit('tabs', { sel:'#tabs',id: phnum,label:phnum , content:inner ,show:true });
 	//tabAdd('#tabs', phnum,phnum , inner, true);
 }
@@ -80,7 +78,7 @@ function incnmsg (data) {
 	for (var j = 0; j < data.destinationAddresses.length; j++) {
 		for (var i = 0; i < numbers.length; i++) {
 			if (data.destinationAddresses[j]==numbers[i]) {
-			$('#smsin_'+data.destinationAddresses[j]+' tbody tr:first').after('<tr><td>'+date+'</td><td>'+data.message+'</td></tr>');
+			$('#smsin_'+data.destinationAddresses[j]+' tbody tr:first').before('<tr><td>'+date+'</td><td>'+data.message+'</td></tr>');
    			simlog (data.message,data.destinationAddresses,'Incoming');
 			} 
 		}
@@ -95,7 +93,10 @@ function broadcast (data) {
 	simlog (data.message,'All','Broadcast');
 }
 
-
+// Generate alerts
+function alerts (place,arg,type) {
+document.getElementById(place).innerHTML=' <div class="alert alert-'+type+'"><a class="close" data-dismiss="alert" href="#">&times;</a>'+arg+'</div>';
+}
 
 $(document).ready(function(){
 
@@ -103,10 +104,6 @@ $(document).ready(function(){
 	var appid='';
 	var apppw='';
 	var appurl='';
-	$("#appalt").hide();
-	$("#closes").click(function() {
-		$("#appalt").hide();
-	});
 
 	$("#cleartbl").live('click', function(){
 		var num =$(this).attr('num');
@@ -119,22 +116,25 @@ $(document).ready(function(){
 			apppw=document.getElementById('inputapppassword').value;
 			appurl=document.getElementById('inputappurl').value;
 		if (appid =='' || apppw =='' || appurl =='') {
-			document.getElementById('alt-app').innerHTML='Fill all the fields';
-			$("#appalt").show();
-		} 
+			alerts ("appalt",'Fill all the fields','error');
+		} else {
+			alerts('appalt','Configured Sucessfully','success')
+		}
 	});
 
 	$("#sendmsgs").live('click', function(){
+
 		if (appid =='' || apppw =='' || appurl =='') {
 			erromsg ('Config the app url');
 			return false;
 		} 
-
 		var num =$(this).attr('num');
 		var msg=document.getElementById('msg_to_send_'+num).value;
 		var postmsg ={message:msg,requestId:++reqid,applicationId:appid,encoding:0,sourceAddress:num,version:'1.0'};
 
-			$.post("http://localhost:3000/sender",{message:postmsg,url: appurl} ,
+		console.log(postmsg);
+		
+			$.post("http://localhost:8080/sender",{message:postmsg,url: appurl} ,
 				function(data, textStatus, jqXHR){
 				
 				socket.emit('logs', { msg:data.msg, sms:msg, num:num });

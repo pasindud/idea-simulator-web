@@ -2,20 +2,17 @@
     .modal-header
         h3#myModalLabel Configure the Simulator
       .modal-body
-        .alert.alert-error(id='appalt')
-          button.close(type='button',id='closes', data-dismiss='fade') ×
-          h4 Warning !
-          p#alt-app
+          #appalt
 
        form.form-horizontal
        .control-group
         label.control-label App id
         .controls
-          input#inputappid(type='text', placeholder='App id',value='APP_000001')
+          input#inputappid(type='text',placeholder='App id',disabled="",value='#{appid}')
        .control-group
         label.control-label App Password
         .controls
-          input#inputapppassword(type='text', placeholder='App Password',value='Password')
+          input#inputapppassword(type='text', disabled="", placeholder='App Password',value='#{appw}')
        .control-group
         label.control-label App URL
         .controls

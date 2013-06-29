@@ -7,13 +7,15 @@
   },
   "dependencies": {
     "express": "2.5.8",
-    "jade": "*"
+    "jade": "*",
+    "request":"2.21.0",
+    "socket.io":"0.9.x"
   },
-    "engines": {
+  "engines": {
     "node": "0.8.x",
     "npm": "1.1.x"
   },
-  "description": "ERROR: No README.md file found!",
+  "description": "A multi user simulator for ideamart apps",
   "main": "app.js",
   "devDependencies": {},
   "repository": "",
@@ -23,5 +25,6 @@
     "sms"
   ],
   "author": "Pasindu De Silva",
-  "license": "MIT"
+  "license": "MIT",
+  "readmeFilename": "README.md"
 }

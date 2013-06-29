@@ -10,6 +10,9 @@ var express = require('express'),
     app = module.exports = express.createServer();
     io = require('socket.io').listen(app, { log: false });
 
+
+var appid=1000,appw=5000;
+
 // all environments
 
 app.configure(function() {
@@ -50,7 +53,7 @@ io.sockets.on('connection', function (socket) {
 * @description - Render the simulator
 */
 app.get('/', function(req,res){
-  res.render('index',{title:'Group Simulator'})
+  res.render('index',{title:'Group Simulator',appid:++appid,appw:++appw})
 });
 
 
@@ -60,6 +63,7 @@ var request = require('request');
 * @description - Sender the sms to the url
 */
 app.post('/sender', function(req,res){
+  
   res.send({msg:'Success'},200);
   request.post({
       url: req.body.url,
@@ -68,11 +72,10 @@ app.post('/sender', function(req,res){
       },
       body: JSON.stringify( req.body.message)
     }, function(error, response, body){
-         if (!error && response.statusCode == 200) {
-            //res.send({msg:'Success'},200);
-        } else {
-           // res.send({msg:'Error'},200);
-        }
+
+         if (!  response.statusCode == 200 || body.statusCode!="S1000") {
+           console.log('Error : Request Unsuccessfull'+body.statusCode+''+response.statusCode); 
+        } 
   });
 });
 
@@ -81,8 +84,9 @@ app.post('/sender', function(req,res){
 * @description - Handle Incomming messages from apps
 */
 app.post('/sms', function(req,res){
+  console.log(req.body,req.body.destinationAddresses[0]);
   res.send({statusCode:'S1000',statusDetail:"Success"},200);
-  if (req.body.destinationAddresses[0]='tel:all') {
+  if (req.body.destinationAddresses[0]=='tel:all') {
     sk.broadcast.emit('broadcast', req.body);
     sk.emit('broadcast', req.body);
   } else {
@@ -91,7 +95,7 @@ app.post('/sms', function(req,res){
   }
 });
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 8080;
 
 app.listen(port);
 console.log("Express server listening on port %d in mode", app.address().port);
