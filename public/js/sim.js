@@ -139,13 +139,23 @@ $(document).ready(function(){
 		
 			$.post("http://idea-sim.herokuapp.com/sender",{message:postmsg,url: appurl} ,
 				function(data, textStatus, jqXHR){
-				
-				socket.emit('logs', { msg:data.msg, sms:msg, num:num });
+		
+						
+				sent_log( { msg:data.msg, sms:msg, num:num });
+				//socket.emit('logs', { msg:data.msg, sms:msg, num:num });
 			});
 	});
 });
 
-
+function sent_log(){
+	if (data.msg=='Success') {
+			toastr.success('Sent Sucessfully');
+			outlog(sms,'Success',num);
+		} else {
+			toastr.warning('Delivery Failed <br> Check the APP URL');
+			outlog(sms,'Failed',num);
+	}
+}
 
 // Log on the number tab
 function outlog (msg,stat,num) {
