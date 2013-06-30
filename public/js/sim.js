@@ -148,13 +148,13 @@ $(document).ready(function(){
 });
 
 function sent_log(data){
-	if (data.msg=='Success') {
+ 		if (data.msg=='Success') {
 			toastr.success('Sent Sucessfully');
-			outlog(sms,'Success',num);
+			outlog(data.sms,'Success',data.num);
 		} else {
 			toastr.warning('Delivery Failed <br> Check the APP URL');
-			outlog(sms,'Failed',num);
-	}
+			outlog(data.sms,'Failed',data.num);
+		}
 }
 
 // Log on the number tab
