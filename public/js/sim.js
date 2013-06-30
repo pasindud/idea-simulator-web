@@ -137,7 +137,7 @@ $(document).ready(function(){
 
 		console.log(postmsg);
 		
-			$.post("http://localhost:8080/sender",{message:postmsg,url: appurl} ,
+			$.post("http://idea-sim.herokuapp.com/sender",{message:postmsg,url: appurl} ,
 				function(data, textStatus, jqXHR){
 				
 				socket.emit('logs', { msg:data.msg, sms:msg, num:num });
