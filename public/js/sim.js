@@ -147,7 +147,7 @@ $(document).ready(function(){
 	});
 });
 
-function sent_log(){
+function sent_log(data){
 	if (data.msg=='Success') {
 			toastr.success('Sent Sucessfully');
 			outlog(sms,'Success',num);
