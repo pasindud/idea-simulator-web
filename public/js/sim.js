@@ -11,12 +11,17 @@ var date =new Date();
 var date=date.toUTCString();
 var reqid=0;
 var socket = io.connect('localhost');
- 
+ 	var appid='';
+	var apppw='';
+	var appurl='';
+	
  socket.on('incomming', function (data) {
-   incnmsg(data);
+	if(data.appid==appid)
+		incnmsg(data);
  });
   socket.on('broadcast', function (data) {
-   broadcast(data);
+	if(data.appid==appid)
+		broadcast(data);
  });
  socket.on('tabs', function (data) {
  	
@@ -64,8 +69,8 @@ function addnumber (id) {
 			return false;
 		}
 	}
-	socket.emit('tabs', { sel:'#tabs',id: phnum,label:phnum , content:inner ,show:true });
-	//tabAdd('#tabs', phnum,phnum , inner, true);
+	//socket.emit('tabs', { sel:'#tabs',id: phnum,label:phnum , content:inner ,show:true });
+	tabAdd('#tabs', phnum,phnum , inner, true);
 }
 
 
@@ -101,9 +106,7 @@ document.getElementById(place).innerHTML=' <div class="alert alert-'+type+'"><a 
 $(document).ready(function(){
 
 
-	var appid='';
-	var apppw='';
-	var appurl='';
+
 
 	$("#cleartbl").live('click', function(){
 		var num =$(this).attr('num');
