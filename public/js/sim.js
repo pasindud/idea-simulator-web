@@ -10,12 +10,13 @@ var numbers = [];
 var date =new Date();
 var date=date.toUTCString();
 var reqid=0;
-var socket = io.connect('localhost');
+var socket = io.connect('http://idea-sim.herokuapp.com');
  	var appid='';
 	var apppw='';
 	var appurl='';
 	
  socket.on('incomming', function (data) {
+ 
 	if(data.appid==appid)
 		incnmsg(data);
  });
