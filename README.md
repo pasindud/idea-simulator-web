@@ -21,7 +21,7 @@
 This assumes you already have node.js & npm installed.
 
 ```
-git clone git://github.com/pasindud/Ideamart-Group-Simulator
+git clone git://github.com/pasindud/idea-simulator-web
 cd Ideamart-Group-Simulator
 npm install
 node app
