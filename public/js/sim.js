@@ -17,11 +17,11 @@ var socket = io.connect('http://idea-sim.herokuapp.com');
 	
  socket.on('incomming', function (data) {
  
-	if(data.appid==appid)
+	if(data.applicationId==appid)
 		incnmsg(data);
  });
   socket.on('broadcast', function (data) {
-	if(data.appid==appid)
+	if(data.applicationId==appid)
 		broadcast(data);
  });
  socket.on('tabs', function (data) {
@@ -81,14 +81,22 @@ document.getElementById("msgalt").innerHTML=' <div class="alert alert-error"><a 
 
 // Handle incomming msg
 function incnmsg (data) {
-	for (var j = 0; j < data.destinationAddresses.length; j++) {
+
+		console.log(data,data.destinationAddresses);
+		var num=data.destinationAddresses.replace("tel:","");
+		console.log(num);
+		
+		$('#smsin_'+num+' tbody tr:first').before('<tr><td>'+date+'</td><td>'+data.message+'</td></tr>');
+   		simlog (data.message,data.destinationAddresses,'Incoming');
+		
+/* 	for (var j = 0; j < data.destinationAddresses.length; j++) {
 		for (var i = 0; i < numbers.length; i++) {
 			if (data.destinationAddresses[j]==numbers[i]) {
 			$('#smsin_'+data.destinationAddresses[j]+' tbody tr:first').before('<tr><td>'+date+'</td><td>'+data.message+'</td></tr>');
    			simlog (data.message,data.destinationAddresses,'Incoming');
 			} 
 		}
-	}
+	} */
 }
 
 // This is a broadcast msg

@@ -38,13 +38,9 @@ io.sockets.on('connection', function (socket) {
 
 
   socket.on('tabs', function (data) {
-    //sk.broadcast.emit('tabs',data);
-    //sk.emit('tabs', data); 
   });
 
   socket.on('logs', function (data) {
-    //sk.broadcast.emit('logs',data);
-    //sk.emit('logs', data); 
   });
 
 });
@@ -72,10 +68,12 @@ app.post('/sender', function(req,res){
       },
       body: JSON.stringify( req.body.message)
     }, function(error, response, body){
-		body=JSON.parse( body);
+	
+		//console.log(JSON.parse( body));
+		/* body=JSON.parse( body);
          if (!  response.statusCode == 200 || body.statusCode!="S1000") {
             console.log('Error : Request Unsuccessfull'+body.statusCode+''+response.statusCode); 
-        } 
+        }  */
   });
 });
 
@@ -85,17 +83,17 @@ app.post('/sender', function(req,res){
 */
 app.post('/sms/:appid', function(req,res){
 
-  console.log(req.body,req.body.destinationAddresses[0]);
+  console.log(req.body);
   
-  req.body.appid=req.params.appid;
-  
+  //req.body.appid=req.params.appid;
+
   res.send({statusCode:'S1000',statusDetail:"Success"},200);
   
   if (req.body.destinationAddresses[0]=='tel:all') {
-    sk.broadcast.emit('broadcast', req.body);
+    sk.broadcast.emit('broadcast',  JSON.stringify(req.body));
     sk.emit('broadcast', req.body);
   } else {
-    sk.broadcast.emit('incomming', req.body);
+    sk.broadcast.emit('incomming',  JSON.stringify(req.body));
     sk.emit('incomming', req.body); 
   }
 });
