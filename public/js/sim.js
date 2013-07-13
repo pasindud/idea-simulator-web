@@ -77,10 +77,7 @@ document.getElementById("msgalt").innerHTML=' <div class="alert alert-error"><a 
 // Handle incomming msg
 function incnmsg (data) {
 
-		console.log(data,data.destinationAddresses);
-		
 		var num=data.destinationAddresses[0].replace("tel:","");
-		console.log(num);
 		
 		$('#smsin_'+num+' tbody tr:first').before('<tr><td>'+date+'</td><td>'+data.message+'</td></tr>');
    		simlog (data.message,data.destinationAddresses,'Incoming');
