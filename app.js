@@ -35,14 +35,6 @@ app.configure("development", function() {
 var sk='';
 io.sockets.on('connection', function (socket) {
   sk=socket;
-
-
-  socket.on('tabs', function (data) {
-  });
-
-  socket.on('logs', function (data) {
-  });
-
 });
 
 /*

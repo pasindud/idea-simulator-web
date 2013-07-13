@@ -16,18 +16,15 @@ var socket = io.connect('http://idea-sim.herokuapp.com');
 	var appurl='';
 	
  socket.on('incomming', function (data) {
- 
 	if(data.applicationId==appid)
 		incnmsg(data);
  });
+ 
   socket.on('broadcast', function (data) {
 	if(data.applicationId==appid)
 		broadcast(data);
  });
- socket.on('tabs', function (data) {
- 	
-   tabAdd(data.sel, data.id, data.label, data.content, data.show);
- });
+
  socket.on('logs', function (data) {
  		if (data.msg=='Success') {
 			toastr.success('Sent Sucessfully');
@@ -70,7 +67,6 @@ function addnumber (id) {
 			return false;
 		}
 	}
-	//socket.emit('tabs', { sel:'#tabs',id: phnum,label:phnum , content:inner ,show:true });
 	tabAdd('#tabs', phnum,phnum , inner, true);
 }
 
