@@ -136,9 +136,6 @@ $(document).ready(function(){
 		var num =$(this).attr('num');
 		var msg=document.getElementById('msg_to_send_'+num).value;
 		var postmsg ={message:msg,requestId:++reqid,applicationId:appid,encoding:0,sourceAddress:num,version:'1.0'};
-
-		console.log(postmsg);
-		
 			$.post("http://idea-sim.herokuapp.com/sender",{message:postmsg,url: appurl} ,
 				function(data, textStatus, jqXHR){
 				sent_log( { msg:data.msg, sms:msg, num:num });
