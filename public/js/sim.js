@@ -52,7 +52,6 @@ function addnumber (id) {
 
 	phnum = phnum.replace(/(^\s+|\s+$)/g,' ');
 
-	
 	var date =new Date();
 	date=date.toUTCString();
 	var inner="<div id='"+phnum+"' class='tab-pane fade in active'>";
@@ -144,10 +143,7 @@ $(document).ready(function(){
 		
 			$.post("http://idea-sim.herokuapp.com/sender",{message:postmsg,url: appurl} ,
 				function(data, textStatus, jqXHR){
-		
-						
 				sent_log( { msg:data.msg, sms:msg, num:num });
-				//socket.emit('logs', { msg:data.msg, sms:msg, num:num });
 			});
 	});
 });

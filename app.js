@@ -76,9 +76,6 @@ app.post('/sender', function(req,res){
 app.post('/sms/:appid', function(req,res){
 
   console.log(req.body);
-  
-  //req.body.appid=req.params.appid;
-
   res.send({statusCode:'S1000',statusDetail:"Success"},200);
   
   if (req.body.destinationAddresses[0]=='tel:all') {
