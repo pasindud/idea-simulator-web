@@ -1,7 +1,12 @@
+#[Online Simulator](http://idea-sim.herokuapp.com/) 
 
-#[Ideamart Group Simulator](https://github.com/pasindud/) 
 
-#### Ideamart Group Simulator is a simulator used to simulate ideamart  apps, inspired by Arunoda's Community Simulator
+
+##### Ideamart Group Simulator is a simulator used to simulate ideamart  apps, inspired by Arunoda's Community Simulator
+
+Go here to test your apps - [http://idea-sim.herokuapp.com/](http://idea-sim.herokuapp.com/) 
+
+Download this to test your apps locally  - [https://github.com/pasindud/ideamart-group-simulator](https://github.com/pasindud/ideamart-group-simulator) 
 
 ***
 #### Following are the node modules used
@@ -17,17 +22,4 @@
 ***
 
 
-####Installation & Setup
-This assumes you already have node.js & npm installed.
-
-```
-git clone git://github.com/pasindud/idea-simulator-web
-cd Ideamart-Group-Simulator
-npm install
-node app
-```
-Note : before sending sms click on config and set the Application URL
-
-
-****
 Tested on Firefox 22v and Chrome 27v
