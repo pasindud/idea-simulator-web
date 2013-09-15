@@ -23,3 +23,7 @@ Download this to test your apps locally  - [https://github.com/pasindud/ideamart
 
 
 Tested on Firefox 22v and Chrome 27v
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pasindud/idea-simulator-web/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
